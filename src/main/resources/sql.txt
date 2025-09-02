@@ -1,0 +1,27 @@
+CREATE TABLE Person (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL ,
+    age INTEGER NOT NULL ,
+    email VARCHAR NOT NULL UNIQUE
+);
+
+INSERT INTO Person (name, age, email) VALUES ('Sergey Larionov', 35, 'walkmanx21@gmail.com'),
+                                        ('Ilmira Larionova', 35, 'mika8750@gmail.com');
+
+INSERT INTO Person (name, age, email) VALUES ('Dmitry Larionov',10, 'dmitry@gmail.com'),
+                                             ('Alice Larionova', 6, 'alice@gmail.com'),
+                                             ('Milana Larionova', 3, 'milana@gmail.com'),
+                                             ('Marina Bykova', 33, 'marina@gmail.com');
+
+DROP TABLE Person;
+
+CREATE TABLE item (
+    id SERIAL PRIMARY KEY ,
+    person_id int REFERENCES Person(id) ON DELETE SET NULL ,
+    item_name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO item (person_id, item_name) VALUES
+                                            (1, 'Airpods'),
+                                            (2, 'Iphone'),
+                                            (4, 'Doll');
