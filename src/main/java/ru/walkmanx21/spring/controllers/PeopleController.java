@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.walkmanx21.spring.models.Person;
 
 import jakarta.validation.Valid;
+import ru.walkmanx21.spring.services.ItemService;
 import ru.walkmanx21.spring.services.PeopleService;
 
 @Controller
@@ -15,14 +16,21 @@ import ru.walkmanx21.spring.services.PeopleService;
 public class PeopleController {
 
     private final PeopleService peopleService;
+    private final ItemService itemService;
 
-    public PeopleController(PeopleService peopleService) {
+    @Autowired
+    public PeopleController(PeopleService peopleService, ItemService itemService) {
         this.peopleService = peopleService;
+        this.itemService = itemService;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
+
+        itemService.findByItemName("Iphone");
+        itemService.findByOwner(peopleService.findAll().get(0));
+
         return "people/index";
     }
 

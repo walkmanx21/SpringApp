@@ -19,6 +19,14 @@ public class Item {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
 
+    public Item(String name, Person owner) {
+        this.name = name;
+        this.owner = owner;
+    }
+
+    public Item() {
+    }
+
     public int getId() {
         return id;
     }

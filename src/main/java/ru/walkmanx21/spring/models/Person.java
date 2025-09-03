@@ -5,7 +5,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.springframework.data.jpa.repository.Temporal;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -32,6 +36,10 @@ public class Person {
 
     @OneToMany(mappedBy = "owner")
     private List<Item> items;
+
+    @Column(name = "date_of_birth")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dateOfBirth;
 
     public Person() {
 
